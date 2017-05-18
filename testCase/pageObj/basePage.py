@@ -22,7 +22,7 @@ class BasePage(object):
     页面基础类，用于所有页面的继承
     '''
     #burl ="http://login.test.wanfangdata.com.cn/Login.aspx" # 万方主站所用用户登录入口
-    burl ="http://check.test.wanfangdata.com.cn/md" #万方相似性硕博登录入口
+    burl ="http://check.test.wanfangdata.com.cn/al" #万方相似性硕博登录入口
 
 
     def __init__(self,selenium_driver,base_url= burl,parent=None):
