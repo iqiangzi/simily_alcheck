@@ -9,8 +9,8 @@ class GetPath(object):
         :return:
         """
         path = os.path.abspath(file_name)
-        path_dir = path.split("simily_bdcheck")
-        absolutepath = str(path_dir[0])+r"simily_bdcheck\testData\%s"%(file_partpath)
+        path_dir = path.split("simily_alcheck")
+        absolutepath = str(path_dir[0])+r"simily_alcheck\testData\%s"%(file_partpath)
         return absolutepath
 
     def getAbsoluteDirPath(self,file_partpath):
@@ -20,11 +20,11 @@ class GetPath(object):
         :return:
         """
         path = os.path.abspath(file_partpath)
-        path_dir = path.split("simily_bdcheck")
-        absolutepath = str(path_dir[0])+r"simily_bdcheck\testData\%s"%(file_partpath)
+        path_dir = path.split("simily_alcheck")
+        absolutepath = str(path_dir[0])+r"simily_alcheck\testData\%s"%(file_partpath)
         #print( "全路径为：",str(absolutepath))
         return absolutepath
 
 if __name__ == "__main__":
-    print(GetPath().getAbsoluteDirPath("downloadFiles"))
-    print(GetPath().getAbsoluteFilePath("testvb.exe",r"studentsAccountUploadApps\testvb.exe"))
+    print(GetPath().getAbsoluteDirPath("testImages"))
+    #print(GetPath().getAbsoluteFilePath("testvb.exe",r"studentsAccountUploadApps\testvb.exe"))
