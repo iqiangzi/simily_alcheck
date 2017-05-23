@@ -9,11 +9,10 @@ import os
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-
+from time import sleep
 from testCase.models import myUnitFirefox
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
-
 from util.toolUtils.getPath import GetPath
 
 
@@ -78,19 +77,21 @@ class BasePage(object):
             flag = False
         return flag
 
-    def wait_element_visible(self, time, element):
+    def wait_element_visible(self,time,element):
         '''
         等待元素出现，超过时间页面加载失败
         :param time:
         :param element:
         :return:
         '''
+        gp = GetPath()
+        path = gp.getAbsoluteDirPath("testImages")
         try:
-            WebDriverWait(self.driver, time).until(EC.presence_of_element_located(element))
-            return self.driver.find_element(*element)
+            WebDriverWait(self.driver,time).until(EC.presence_of_element_located(element))
+            sleep(1)
         except Exception as e:
             print('元素异常, 页面已截图 :')
-            self.driver.screenshot()
+            self.driver.save_screenshot(path)
 
     #判断是否下载到本地,返回bool类型的True或False
     def verifyExist(self,fileName,filePath):
