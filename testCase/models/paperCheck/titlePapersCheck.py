@@ -203,10 +203,10 @@ class TitlePapersCheck(BasePage):
         click = ClickButton()
         #获取位置并点击
         print(self.get_where())
-        #pos=(1340, 443)
+        pos=(1340, 443)
 
-        click.click(click.get_win_handle(self.get_where()),self.get_where())
-        #click.click(click.get_win_handle(pos),pos)
+        #click.click(click.get_win_handle(self.get_where()),self.get_where())
+        click.click(click.get_win_handle(pos),pos)
 
 
     def get_where(self):
