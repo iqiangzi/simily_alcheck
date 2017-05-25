@@ -259,7 +259,6 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"moveto_existfolder.jpg")
 
-
     def test_modifyto_existfolder_run(self):
         '''修改至已有文件夹，显示文件夹名称'''
         upc=UpLoadPaperCheck(self.driver)

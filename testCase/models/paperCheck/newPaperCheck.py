@@ -30,6 +30,7 @@ class UpLoadPaperCheck(BasePage):
     addfolder_windowconfirm_loc=(By.XPATH,".//*[@id='layui-layer1']/div[3]/a[1]")
     #修改文件夹确定按钮
     modifyfolder_confirm=(By.XPATH,".//*[@id='layui-layer2']/div[3]/a[1]")
+    modifyfolder_confirm1=(By.XPATH,".//*[@id='layui-layer3']/div[3]/a[1]")
     #添加到新文件夹
     add_newfolder=(By.CSS_SELECTOR,"#radio1")
     #添加至已有文件夹
@@ -98,6 +99,7 @@ class UpLoadPaperCheck(BasePage):
     #进入新论文相似性检测模块
     def in_newPaperCheck(self):
         self.find_element(*self.in_newPaperCheck_loc).click()
+
     #上传前选择待检测论文要放入的文件夹
     def moveFolder(self):
         self.find_element(*self.upload_moveFolder_button).click()
@@ -116,7 +118,7 @@ class UpLoadPaperCheck(BasePage):
     #修改已存在的文件夹名称
     def modify_existfolder_text(self):
         return self.find_element(*self.existfolder1).text
-
+    #修改到已存在文件夹
     def modify_existfolder(self):
         self.find_element(*self.existfolder1).click()
     #修改文件夹按钮
@@ -125,6 +127,8 @@ class UpLoadPaperCheck(BasePage):
     #修改文件夹确定按钮
     def modify_confirm_button(self):
         self.find_element(*self.modifyfolder_confirm).click()
+    def modify_confirm_button1(self):
+        self.find_element(*self.modifyfolder_confirm1).click()
     #默认文件夹
     def get_defaultfolder_text(self):
         return self.find_element(*self.defaultfolder).text
@@ -153,12 +157,16 @@ class UpLoadPaperCheck(BasePage):
 
     #添加至新文件夹过程
     def add_to_new_folder(self):
+        #单击移动到文件夹
         self.moveFolder()
         sleep(2)
+        #单击添加到新文件夹
         self.add_newfolder_button()
         sleep(2)
+        #获取输入的文件夹名称
         text = self.input_new_foldername1()
         sleep(2)
+        #单击确定按钮
         self.click_confirm_button()
         sleep(2)
         return text
@@ -176,11 +184,6 @@ class UpLoadPaperCheck(BasePage):
         self.click_confirm_button()
         sleep(2)
         return text
-
-
-
-
-
 
 
 
@@ -247,10 +250,6 @@ class UpLoadPaperCheck(BasePage):
 
 
 
-
-
-
-
     #点击插件按钮方法
     def clickUpLoad(self):
         click = ClickButton()
@@ -301,25 +300,6 @@ class UpLoadPaperCheck(BasePage):
         self.find_element(*self.upload_moveFolder_button).click()
 
 
-
-
-
-class ManualEnterPaperCheck(BasePage):
-
-    #进入论文检测模块
-    in_paperCheck_button_loc=(By.ID,"paperCheck")
-    #进入新论文相似性检测
-    in_newPaperCheck_loc=(By.XPATH,"html/body/div[1]/aside/div/section/ul/li[3]/ul/li[1]/a")
-    #单击进入手工录入
-    manualEnter_button=(By.XPATH,".//*[@id='step7']/a")
-    #将论文添加到分类文件夹
-    addFolder_button=(By.ID,"movein")
-
-    def in_PaperCheck_button(self):
-        self.find_element(*self.in_paperCheck_button_loc).click()
-
-    def manualenter(self):
-        self.find_element(*self.manualEnter_button).click()
 
 
 
