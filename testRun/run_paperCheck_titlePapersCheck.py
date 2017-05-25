@@ -579,7 +579,34 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
 
     def test_batch_uploadPaper_run(self):
         '''批量上传论文'''
-        pass
+        self.file_upload("detect_file_doc.doc")
+        tpc=TitlePapersCheck(self.driver)
+        sleep(10)
+        tpc.supply_paperInfo(title="detect_file_doc.doc",author="陶爱文",source="国家开放大学")
+        sleep(2)
+        #单击继续添加论文
+        tpc.continue_addPaper_button()
+        sleep(10)
+        #单击上传按钮
+        #tpc.clickUpLoad()
+        #sleep(2)
+        #tpc.uploadFile_para("chrome",tpc.getFilePath("detect_file_doc.doc"))
+
+        tpc.supply_paperInfo(title="",author="李硕",source="")
+        sleep(2)
+        tpc.search_paper_button()
+        sleep(2)
+        tpc.choose_firstPaper()
+        sleep(2)
+        tpc.choose_confirm_button()
+        sleep(2)
+        tpc.continue_checked()
+        sleep(2)
+
+        sleep(2)
+        imagetest = getResultImage()
+        imagetest.insert_image(self.driver,"batch_uploadPaper.jpg")
+
 
 
 
