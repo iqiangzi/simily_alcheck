@@ -95,7 +95,7 @@ class FilesOption():
 if __name__=='__main__':
     t = FilesOption()
     # print(t.getFileSize("E:/Work_Python_Test/test.txt"))
-    Flist= t.readFileContent("E:/PyCharm_Workspace/simily_shuobo/testData/paperDetectionEntry/big_text.txt")
+    Flist= t.readFileContent("E:/pycharmWork/simily_shuobo/testData/paperDetectionEntry/big_text.txt")
     print(type(Flist))
     # fileContent = ';'.join(Flist)
     # print(fileContent)
