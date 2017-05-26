@@ -202,7 +202,7 @@ class TitlePapersCheck(BasePage):
     def clickUpLoad(self):
         click = ClickButton()
         #获取位置并点击
-        print(self.get_where())
+        #print(self.get_where())
         pos=(1340, 443)
 
         #click.click(click.get_win_handle(self.get_where()),self.get_where())
@@ -344,6 +344,303 @@ class TitlePapersCheck(BasePage):
     choose_confirm=(By.ID,"lookforPaperOk")
     def choose_confirm_button(self):
         self.find_element(*self.choose_confirm).click()
+
+
+    #第二篇论文
+
+    #作者
+    author1=(By.CSS_SELECTOR,".container>div:nth-child(2) .col-xs-9>#author")
+    #题名
+    title1=(By.CSS_SELECTOR,".container>div:nth-child(2) .col-xs-9>#title")
+    #查找论文
+    lookForPaper1=(By.CSS_SELECTOR,".container>div:nth-child(2) #lookForPaper")
+    choose_secondPaper1=(By.CSS_SELECTOR,".container>div:nth-child(2) #papersbody>li:nth-child(1)>input")
+    #确定按钮
+    cloose_confirm_button1=(By.CSS_SELECTOR,".container>div:nth-child(2) #lookforPaperOk")
+    #继续添加按钮
+    continue_add1=(By.CSS_SELECTOR,".container>div:nth-child(2) .funButton>#addPaper")
+    #清空文本
+    clearPaper1=(By.CSS_SELECTOR,".container>div:nth-child(2) #clearPaper")
+
+    #最多上传篇数提示
+    max_paper=(By.ID,"max")
+    def max_uploadPaper(self):
+        return self.find_element(*self.max_paper).text
+    #添加第二篇-查找论文上传流程
+    def lookForPaper_upload(self):
+        #输入作者
+        self.find_element(*self.author1).clear()
+        self.find_element(*self.author1).send_keys("李硕")
+        sleep(5)
+        #单击查找
+        self.find_element(*self.lookForPaper1).click()
+        sleep(5)
+        #选择一篇论文
+        self.find_element(*self.choose_secondPaper1).click()
+        sleep(5)
+        #单击确定按钮
+        self.find_element(*self.cloose_confirm_button1).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+
+
+    #第三篇论文
+    #作者
+    author2=(By.CSS_SELECTOR,".container>div:nth-child(3) .col-xs-9>#author")
+    #题名
+    title2=(By.CSS_SELECTOR,".container>div:nth-child(3) .col-xs-9>#title")
+    #查找论文
+    lookForPaper2=(By.CSS_SELECTOR,".container>div:nth-child(3) #lookForPaper")
+    choose_thirdPaper=(By.CSS_SELECTOR,".container>div:nth-child(3) #papersbody>li:nth-child(2)>input")
+    #确定按钮
+    cloose_confirm_button2=(By.CSS_SELECTOR,".container>div:nth-child(3) #lookforPaperOk")
+    #继续添加按钮
+    continue_add2=(By.CSS_SELECTOR,".container>div:nth-child(3) .funButton>#addPaper")
+    #开始检测按钮
+    startCheck2=(By.CSS_SELECTOR,".container>div:nth-child(3) #beginDetect")
+    def start_batch_check(self):
+        self.find_element(*self.startCheck2).click()
+
+    #添加第三篇-查找论文上传流程
+    def lookForPaper_upload1(self):
+
+        self.find_element(*self.continue_add1).click()
+        sleep(10)
+        #输入作者
+        self.find_element(*self.author2).clear()
+        self.find_element(*self.author2).send_keys("李硕")
+        sleep(5)
+        #单击查找
+        self.find_element(*self.lookForPaper2).click()
+        sleep(10)
+        #选择一篇论文
+        self.find_element(*self.choose_thirdPaper).click()
+        sleep(5)
+        #单击确定按钮
+        self.find_element(*self.cloose_confirm_button2).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+
+    #第四篇论文
+    #作者
+    author3=(By.CSS_SELECTOR,".container>div:nth-child(4) .col-xs-9>#author")
+    #题名
+    title3=(By.CSS_SELECTOR,".container>div:nth-child(4) .col-xs-9>#title")
+    #查找论文
+    lookForPaper3=(By.CSS_SELECTOR,".container>div:nth-child(4) #lookForPaper")
+    choose_fourthPaper=(By.CSS_SELECTOR,".container>div:nth-child(4) #papersbody>li:nth-child(3)>input")
+    #确定按钮
+    cloose_confirm_button3=(By.CSS_SELECTOR,".container>div:nth-child(4) #lookforPaperOk")
+    #继续添加按钮
+    continue_add3=(By.CSS_SELECTOR,".container>div:nth-child(4) .funButton>#addPaper")
+
+    #添加第四篇-查找论文上传流程
+    def lookForPaper_upload2(self):
+
+        self.find_element(*self.continue_add2).click()
+        sleep(5)
+        #输入作者
+        self.find_element(*self.author3).clear()
+        self.find_element(*self.author3).send_keys("李硕")
+        sleep(10)
+        #单击查找
+        self.find_element(*self.lookForPaper3).click()
+        sleep(5)
+        #选择一篇论文
+        self.find_element(*self.choose_fourthPaper).click()
+        sleep(5)
+        #单击确定按钮
+        self.find_element(*self.cloose_confirm_button3).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第五篇论文
+    #作者
+    author4=(By.CSS_SELECTOR,".container>div:nth-child(5) .col-xs-9>#author")
+    #题名
+    title4=(By.CSS_SELECTOR,".container>div:nth-child(5) .col-xs-9>#title")
+    #查找论文
+    lookForPaper4=(By.CSS_SELECTOR,".container>div:nth-child(5) #lookForPaper")
+    choose_fifthPaper=(By.CSS_SELECTOR,".container>div:nth-child(5) #papersbody>li:nth-child(4)>input")
+    #确定按钮
+    cloose_confirm_button4=(By.CSS_SELECTOR,".container>div:nth-child(5) #lookforPaperOk")
+    #继续添加按钮
+    continue_add4=(By.CSS_SELECTOR,".container>div:nth-child(5) .funButton>#addPaper")
+
+    #添加第5篇-查找论文上传流程
+    def lookForPaper_upload3(self):
+
+        self.find_element(*self.continue_add3).click()
+        sleep(5)
+        self.find_element(*self.author4).clear()
+        self.find_element(*self.author4).send_keys("李硕")
+        sleep(10)
+        self.find_element(*self.lookForPaper4).click()
+        sleep(5)
+        self.find_element(*self.choose_fifthPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button4).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第六篇论文
+    #作者
+    author5=(By.CSS_SELECTOR,".container>div:nth-child(6) .col-xs-9>#author")
+    #题名
+    title5=(By.CSS_SELECTOR,".container>div:nth-child(6) .col-xs-9>#title")
+    #查找论文
+    lookForPaper5=(By.CSS_SELECTOR,".container>div:nth-child(6) #lookForPaper")
+    choose_sixthPaper=(By.CSS_SELECTOR,".container>div:nth-child(6) #papersbody>li:nth-child(5)>input")
+    #确定按钮
+    cloose_confirm_button5=(By.CSS_SELECTOR,".container>div:nth-child(6) #lookforPaperOk")
+    #继续添加按钮
+    continue_add5=(By.CSS_SELECTOR,".container>div:nth-child(6) .funButton>#addPaper")
+
+    #添加第6篇-查找论文上传流程
+    def lookForPaper_upload4(self):
+
+        self.find_element(*self.continue_add4).click()
+        sleep(5)
+        self.find_element(*self.author5).clear()
+        self.find_element(*self.author5).send_keys("李硕")
+        sleep(10)
+        self.find_element(*self.lookForPaper5).click()
+        sleep(10)
+        self.find_element(*self.choose_sixthPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button5).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第七篇论文
+    #作者
+    author6=(By.CSS_SELECTOR,".container>div:nth-child(7) .col-xs-9>#author")
+    #题名
+    title6=(By.CSS_SELECTOR,".container>div:nth-child(7) .col-xs-9>#title")
+    #查找论文
+    lookForPaper6=(By.CSS_SELECTOR,".container>div:nth-child(7) #lookForPaper")
+    choose_seventhPaper=(By.CSS_SELECTOR,".container>div:nth-child(7) #papersbody>li:nth-child(6)>input")
+    #确定按钮
+    cloose_confirm_button6=(By.CSS_SELECTOR,".container>div:nth-child(7) #lookforPaperOk")
+    #继续添加按钮
+    continue_add6=(By.CSS_SELECTOR,".container>div:nth-child(7) .funButton>#addPaper")
+
+    #添加第7篇-查找论文上传流程
+    def lookForPaper_upload5(self):
+
+        self.find_element(*self.continue_add5).click()
+        sleep(5)
+        self.find_element(*self.author6).clear()
+        self.find_element(*self.author6).send_keys("李硕")
+        sleep(5)
+        self.find_element(*self.lookForPaper6).click()
+        sleep(5)
+        self.find_element(*self.choose_seventhPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button6).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第8篇论文
+    #作者
+    author7=(By.CSS_SELECTOR,".container>div:nth-child(8) .col-xs-9>#author")
+    #题名
+    title7=(By.CSS_SELECTOR,".container>div:nth-child(8) .col-xs-9>#title")
+    #查找论文
+    lookForPaper7=(By.CSS_SELECTOR,".container>div:nth-child(8) #lookForPaper")
+    choose_eighthPaper=(By.CSS_SELECTOR,".container>div:nth-child(8) #papersbody>li:nth-child(7)>input")
+    #确定按钮
+    cloose_confirm_button7=(By.CSS_SELECTOR,".container>div:nth-child(8) #lookforPaperOk")
+    #继续添加按钮
+    continue_add7=(By.CSS_SELECTOR,".container>div:nth-child(8) .funButton>#addPaper")
+
+    #添加第8篇-查找论文上传流程
+    def lookForPaper_upload6(self):
+
+        self.find_element(*self.continue_add6).click()
+        sleep(5)
+        self.find_element(*self.author7).clear()
+        self.find_element(*self.author7).send_keys("李硕")
+        sleep(5)
+        self.find_element(*self.lookForPaper7).click()
+        sleep(5)
+        self.find_element(*self.choose_eighthPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button7).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第9篇论文
+    #作者
+    author8=(By.CSS_SELECTOR,".container>div:nth-child(9) .col-xs-9>#author")
+    #题名
+    title8=(By.CSS_SELECTOR,".container>div:nth-child(9) .col-xs-9>#title")
+    #查找论文
+    lookForPaper8=(By.CSS_SELECTOR,".container>div:nth-child(9) #lookForPaper")
+    choose_ninthPaper=(By.CSS_SELECTOR,".container>div:nth-child(9) #papersbody>li:nth-child(8)>input")
+    #确定按钮
+    cloose_confirm_button8=(By.CSS_SELECTOR,".container>div:nth-child(9) #lookforPaperOk")
+    #继续添加按钮
+    continue_add8=(By.CSS_SELECTOR,".container>div:nth-child(9) .funButton>#addPaper")
+
+    #添加第9篇-查找论文上传流程
+    def lookForPaper_upload7(self):
+
+        self.find_element(*self.continue_add7).click()
+        sleep(5)
+        self.find_element(*self.author8).clear()
+        self.find_element(*self.author8).send_keys("李硕")
+        sleep(5)
+        self.find_element(*self.lookForPaper8).click()
+        sleep(5)
+        self.find_element(*self.choose_ninthPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button8).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+
+    #第10篇论文
+    #作者
+    author9=(By.CSS_SELECTOR,".container>div:nth-child(10) .col-xs-9>#author")
+    #题名
+    title9=(By.CSS_SELECTOR,".container>div:nth-child(10) .col-xs-9>#title")
+    #查找论文
+    lookForPaper9=(By.CSS_SELECTOR,".container>div:nth-child(10) #lookForPaper")
+    choose_tenthPaper=(By.CSS_SELECTOR,".container>div:nth-child(10) #papersbody>li:nth-child(9)>input")
+    #确定按钮
+    cloose_confirm_button9=(By.CSS_SELECTOR,".container>div:nth-child(10) #lookforPaperOk")
+    #继续添加按钮
+    continue_add9=(By.CSS_SELECTOR,".container>div:nth-child(10) .funButton>#addPaper")
+
+    #添加第10篇-查找论文上传流程
+    def lookForPaper_upload8(self):
+
+        self.find_element(*self.continue_add8).click()
+        sleep(5)
+        self.find_element(*self.author9).clear()
+        self.find_element(*self.author9).send_keys("李硕")
+        sleep(5)
+        self.find_element(*self.lookForPaper9).click()
+        sleep(5)
+        self.find_element(*self.choose_tenthPaper).click()
+        sleep(5)
+        self.find_element(*self.cloose_confirm_button9).click()
+        sleep(5)
+        self.continue_checked()
+        sleep(5)
+        self.find_element(*self.continue_add9).click()
+
+
 
 
 

@@ -262,6 +262,7 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         print("停止检测已检测过的论文")
 
     def test_fileSubmit_fail_run(self):
+        '''上传文件解析失败'''
         self.file_upload("extract_fail.doc")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -271,6 +272,7 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest.insert_image(self.driver,"fileSubmit_fail.jpg")
 
     def test_detect_big_fail_run(self):
+        '''上传文件超过30M'''
         self.file_upload("uploadfile_over30m.pdf")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -280,8 +282,8 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest.insert_image(self.driver,"detect_big_fail.jpg")
 
     def test_detect_Empty_fail_run(self):
-
-        self.file_upload("uploadfile_over30m.pdf")
+        '''文件大小为0'''
+        self.file_upload("uploadfile_blank.docx")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
         self.assertEqual(tpc.get_check_content(),"上传失败 文件大小为0")
@@ -291,6 +293,7 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest.insert_image(self.driver,"fileEmpty_fail.jpg")
 
     def test_uploadfile_pdf_run(self):
+        '''上传PDF格式的文件'''
         self.file_upload("detect_file_pdf.pdf")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -301,6 +304,7 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest.insert_image(self.driver,"uploadfile_PDF.jpg")
 
     def test_uploadfile_rtf_run(self):
+        '''上传rtf格式的文件'''
         self.file_upload("detect_file_rtf.rtf")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -310,7 +314,9 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"uploadfile_rtf.jpg")
 
+
     def test_uploadfile_doc_run(self):
+        '''上传doc格式的文件'''
         self.file_upload("detect_file_doc.doc")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -321,6 +327,7 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         imagetest.insert_image(self.driver,"uploadfile_doc.jpg")
 
     def test_uploadfile_docx_run(self):
+        '''上传docx格式的文件'''
         self.file_upload("detect_file_docx.docx")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -572,13 +579,8 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
             print("继续送检论文测试成功")
 
 
-
-
-
-
-
     def test_batch_uploadPaper_run(self):
-        '''批量上传论文'''
+        '''批量上传论文进行检测'''
         self.file_upload("detect_file_doc.doc")
         tpc=TitlePapersCheck(self.driver)
         sleep(10)
@@ -587,25 +589,78 @@ class RunTitlePapersCheck(myUnitChrome.UnitChrome):
         #单击继续添加论文
         tpc.continue_addPaper_button()
         sleep(10)
-        #单击上传按钮
-        #tpc.clickUpLoad()
-        #sleep(2)
-        #tpc.uploadFile_para("chrome",tpc.getFilePath("detect_file_doc.doc"))
+        tpc.lookForPaper_upload()
+        sleep(5)
+        print("添加第2篇成功")
+        tpc.lookForPaper_upload1()
+        sleep(5)
+        print("添加第3篇成功")
+        #单击开始检测按钮
+        tpc.start_batch_check()
 
-        tpc.supply_paperInfo(title="",author="李硕",source="")
-        sleep(2)
-        tpc.search_paper_button()
-        sleep(2)
-        tpc.choose_firstPaper()
-        sleep(2)
-        tpc.choose_confirm_button()
-        sleep(2)
-        tpc.continue_checked()
-        sleep(2)
+        sleep(5)
+        text1=tpc.get_check_content()
+        text2="您的检测命令已提交至系统，系统需要一些时间完成检测任务，在此期间您可以关闭浏览器等待检测，再次登录系统时可在检测信息页查看您的检测结果！"
 
+        if text1 == text2:
+            tpc.continue_checkpaper()
+            sleep(2)
+            self.assertEqual(tpc.continue_checkpaper_remind(),"职称论文相似性检测","没有留在论文检测页面")
+            print("批量检测测试成功")
+
+        else:
+            tpc.continue_checked()
+            sleep(5)
+            tpc.continue_checkpaper()
+            sleep(2)
+            self.assertEqual(tpc.continue_checkpaper_remind(),"职称论文相似性检测","没有留在论文检测页面")
+            print("批量检测论文测试成功")
+
+
+    def test_batch_uploadPaper_more10_run(self):
+        '''批量上传论文-添加10篇不能继续添加'''
+        self.file_upload("detect_file_doc.doc")
+        tpc=TitlePapersCheck(self.driver)
+        sleep(10)
+        tpc.supply_paperInfo(title="detect_file_doc.doc",author="陶爱文",source="国家开放大学")
+        sleep(2)
+        #单击继续添加论文
+        tpc.continue_addPaper_button()
+        print("添加第1篇成功")
+        sleep(10)
+        tpc.lookForPaper_upload()
+        sleep(5)
+        print("添加第2篇成功")
+        tpc.lookForPaper_upload1()
+        sleep(5)
+        print("添加第3篇成功")
+
+        tpc.lookForPaper_upload2()
+        sleep(5)
+        print("添加第4篇成功")
+
+        tpc.lookForPaper_upload3()
+        sleep(5)
+        print("添加第5篇成功")
+        tpc.lookForPaper_upload4()
+        sleep(5)
+        print("添加第6篇成功")
+        tpc.lookForPaper_upload5()
+        sleep(5)
+        print("添加第7篇成功")
+        tpc.lookForPaper_upload6()
+        sleep(2)
+        print("添加第8篇成功")
+        tpc.lookForPaper_upload7()
+        sleep(2)
+        print("添加第9篇成功")
+        tpc.lookForPaper_upload8()
+        sleep(2)
+        print("添加第10篇成功")
+        self.assertEqual(tpc.max_uploadPaper(),"待检测论文已到10篇，无法添加新论文","超过十篇依旧可以上传")
         sleep(2)
         imagetest = getResultImage()
-        imagetest.insert_image(self.driver,"batch_uploadPaper.jpg")
+        imagetest.insert_image(self.driver,"batch_uploadPaper_more10.jpg")
 
 
 
