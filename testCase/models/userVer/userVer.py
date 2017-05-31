@@ -40,10 +40,12 @@ class UserVer(BasePage):
 
     #登录用户名
     def login_username(self,username):
+        super(UserVer, self).wait_element_visible(10,self.login_username_loc)
         self.find_element(*self.login_username_loc).clear()
         self.find_element(*self.login_username_loc).send_keys(username)
     #登录密码
     def login_password(self,password):
+        super(UserVer, self).wait_element_visible(10,self.login_password_loc)
         self.find_element(*self.login_password_loc).clear()
         self.find_element(*self.login_password_loc).send_keys(password)
     #登录按钮
