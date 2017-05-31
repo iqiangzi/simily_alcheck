@@ -24,7 +24,3 @@ if __name__=='__main__':
     driver.get("http://www.baidu.com")
     s.insert_image(driver,'baidu.jpg')
     driver.quit()
-
-
-
-

@@ -80,7 +80,7 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         '''空文件不允许上传'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("uploadfile_blank.docx")
-        sleep(5)
+        sleep(10)
         alert_text = upc.verifyExistAlert()
         self.assertEqual(alert_text,u"上传失败\n文件大小为0")
 
@@ -93,7 +93,7 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         '''文件超过30M不允许上传'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("uploadfile_over30m.pdf")
-        sleep(10)
+        sleep(15)
         alert_text = upc.verifyExistAlert()
         self.assertEqual(alert_text,u"上传失败\n文件大小超过限制( 30MB )")
         print("文件超过30M不允许上传测试成功")
@@ -107,9 +107,9 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         self.file_upload("detect_file_continue.pdf")
         sleep(10)
         upc.start_checkPaper()
-        sleep(2)
+        sleep(5)
         upc.continue_checkpaper()
-        sleep(2)
+        sleep(5)
         self.assertEqual(upc.continue_checkpaper_remind(),"新论文相似性检测","单击继续检测论文没有停留在上传页面")
         print("PDF继续检测成功")
 
@@ -126,14 +126,14 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         sleep(2)
         upc.jump_checkInfo()
         sleep(2)
-        self.assertEqual(upc.jump_checkpaper_remind(),"检测信息","没有跳转到检测信息页")
+        self.assertEqual(upc.jump_checkpaper_remind(),"detect_file_pdf.pdf","没有跳转到检测信息页")
         print("PDF跳转到检测信息页成功")
 
         sleep(2)
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"fileupload_pdf_checkinfo.jpg")
 
-    def test_detect_rtf_lookResult_run6(self):
+    def test_detect_rtf_lookResult_run(self):
         '''选择rtf文件逐个选择跳转至检测结果页'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("detect_file_rtf.rtf")
@@ -142,14 +142,14 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         sleep(2)
         upc.jump_checkInfo()
         sleep(2)
-        self.assertEqual(upc.jump_checkpaper_remind(),"检测信息","没有跳转到检测信息页")
+        self.assertEqual(upc.jump_checkpaper_remind(),"detect_file_rtf.rtf","没有跳转到检测信息页")
         print("rtf跳转到检测信息页成功")
 
         sleep(2)
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"detect_rtf_lookResult.jpg")
 
-    def test_detect_txt_lookResult_run6(self):
+    def test_detect_txt_lookResult_run(self):
         '''选择txt文件逐个选择跳转至检测结果页'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("detect_file_txt.txt")
@@ -158,14 +158,14 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         sleep(2)
         upc.jump_checkInfo()
         sleep(2)
-        self.assertEqual(upc.jump_checkpaper_remind(),"检测信息","没有跳转到检测信息页")
+        self.assertEqual(upc.jump_checkpaper_remind(),"detect_file_txt.txt","没有跳转到检测信息页")
         print("txt跳转到检测信息页成功")
 
         sleep(2)
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"detect_txt_lookResult.jpg")
 
-    def test_detect_docx_lookResult_run6(self):
+    def test_detect_docx_lookResult_run(self):
         '''选择docx文件逐个选择跳转至检测结果页'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("detect_file_docx.docx")
@@ -181,23 +181,23 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"detect_docx_lookResult.jpg")
 
-    def test_detect_doc_lookResult_run6(self):
+    def test_detect_doc_lookResult_run(self):
         '''选择doc文件逐个选择跳转至检测结果页'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("detect_file_doc.doc")
         sleep(5)
         upc.start_checkPaper()
-        sleep(2)
+        sleep(5)
         upc.jump_checkInfo()
-        sleep(2)
+        sleep(5)
         self.assertEqual(upc.jump_checkpaper_remind(),"detect_file_doc.doc","没有跳转到检测信息页")
-        print("txt跳转到检测信息页成功")
+        print("doc跳转到检测信息页成功")
 
         sleep(2)
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"detect_doc_lookResult.jpg")
 
-    def test_detect_excel_lookResult_run6(self):
+    def test_detect_excel_lookResult_run(self):
         '''选择excel文件逐个选择跳转至检测结果页'''
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("excel_file_fail.xlsx")
@@ -258,7 +258,6 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         sleep(2)
         imagetest = getResultImage()
         imagetest.insert_image(self.driver,"moveto_existfolder.jpg")
-
 
     def test_modifyto_existfolder_run(self):
         '''修改至已有文件夹，显示文件夹名称'''
@@ -338,10 +337,20 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         upc=UpLoadPaperCheck(self.driver)
         self.user_login()
         sleep(2)
+        #添加至新文件夹
         foldername=upc.add_to_new_folder()
-        upc.moveFolder()
+        #upc.moveFolder()
+        upc.modify_choosefolder_button()
+        #单击添加到新文件夹
+        upc.add_newfolder_button()
         sleep(2)
-        upc.add_to_new_folder_custom(foldername)
+        #获取输入的文件夹名称
+        upc.input_new_foldername(foldername)
+        sleep(2)
+        #单击确定按钮
+        upc.modify_confirm_button1()
+        sleep(2)
+        #upc.add_to_new_folder_custom(foldername)
         error_info = upc.create_error_remind()
         self.assertEqual(error_info,"文件夹已存在！","名称重复未提示")
         print("新建文件夹名称不能重复测试成功")
@@ -354,14 +363,13 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         upc=UpLoadPaperCheck(self.driver)
         self.file_upload("detect_file_pdf.pdf")
 
-        sleep(5)
+        sleep(10)
         #text=upc.paperName()
         upc.delete_singlefile_button()
-        sleep(2)
+        sleep(5)
         #单击确认删除
         upc.delete_singlefile_confirm()
-        sleep(2)
-        #text1=upc.paperName()
+        sleep(3)
 
         text=upc.delete_success_remind()
         self.assertEqual(text,"没有找到匹配的记录","删除失败")
@@ -379,15 +387,15 @@ class RunNewPaperCheck(myUnitChrome.UnitChrome):
         sleep(5)
         #全选
         upc.selectAllPaper_button()
-        sleep(2)
+        sleep(3)
         #单击more
         upc.moreopration_button()
-        sleep(2)
+        sleep(3)
         #单击删除
         upc.delete_selectedfile()
         #单击确认删除
         upc.delete_singlefile_confirm()
-        sleep(2)
+        sleep(3)
         text=upc.delete_success_remind()
         self.assertEqual(text,"没有找到匹配的记录","删除失败")
         print("删除全部论文测试成功")
